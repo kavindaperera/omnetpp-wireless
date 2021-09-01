@@ -1,19 +1,21 @@
+file 36502 1630496059                                           
 version 2
-run Wireless06-0-20210901-16:46:40-33776
-attr configname Wireless06
-attr datetime 20210901-16:46:40
-attr experiment Wireless06
+run Wireless07-0-20210901-17:03:51-28232
+attr configname Wireless07
+attr datetime 20210901-17:03:51
+attr experiment Wireless07
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsf ""
 attr measurement ""
 attr network WirelessB
-attr processid 33776
+attr processid 28232
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
+param *.host*.wlan[0].mac.useAck true
 param *.host*.wlan[0].typename "\"WirelessInterface\""
 param *.host*.wlan[0].radio.typename "\"UnitDiskRadio\""
 param *.host*.wlan[0].mac.typename "\"CsmaCaMac\""
@@ -53,7 +55,7 @@ param *.hostB.app[0].localPort 5000
 param *.host*.wlan[0].typename "\"AckingWirelessInterface\""
 param *.host*.wlan[0].mac.useAck false
 param *.host*.wlan[0].mac.fullDuplex false
-param *.host*.wlan[0].radio.transmitter.communicationRange 500m
+param *.host*.wlan[0].radio.transmitter.communicationRange 400m
 param *.host*.wlan[0].radio.receiver.ignoreInterference true
 param *.host*.wlan[0].mac.headerLength 23B
 param *.host*.**.bitrate 1Mbps
@@ -136,103 +138,91 @@ vector 19 WirelessB.hostR1.wlan[0].mac.queue queueLength:vector ETV
 attr interpolationmode sample-hold
 attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
 attr title "queue length, vector"
-vector 20 WirelessB.hostR1.wlan[0].mac.queue packetPopped:vector(packetBytes) ETV
+vector 20 WirelessB.hostR1.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "Radio transmission state, vector"
+vector 21 WirelessB.hostR1.wlan[0].mac.queue packetPopped:vector(packetBytes) ETV
 attr interpolationmode none
 attr title "packet popped, vector(packetBytes)"
-vector 21 WirelessB.hostR1.wlan[0].mac.queue queueingTime:vector ETV
+vector 22 WirelessB.hostR1.wlan[0].mac.queue queueingTime:vector ETV
 attr interpolationmode none
 attr source queueingTime(packetPopped)
 attr title "queueing times, vector"
 attr unit s
-vector 22 WirelessB.hostR1.wlan[0].radio transmissionState:vector ETV
+vector 23 WirelessB.hostR3.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, vector(packetBytes)"
+vector 24 WirelessB.hostA.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, vector(packetBytes)"
+vector 25 WirelessB.hostB.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 26 WirelessB.hostB.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 27 WirelessB.hostB.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 28 WirelessB.hostB.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr source dataAge(packetReceived)
+attr title "end-to-end delay, vector"
+attr unit s
+vector 29 WirelessB.hostB.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number, vector"
+vector 30 WirelessB.hostB.wlan[0].radio transmissionState:vector ETV
 attr interpolationmode sample-hold
 attr source transmissionStateChanged
 attr title "Radio transmission state, vector"
-0	0	0	0
-0	0	0	0
-0	0	0	2
-0	9	0.022835250545	3
-0	19	0.031371250545	2
-0	28	0.031511250545	3
-0	34	0.040047250545	2
-1	0	0	0
-1	0	0	0
-1	0	0	2
-2	0	0	0
-2	0	0	0
-2	0	0	2
-2	43	0.040367922865	3
-3	0	0	0
-3	0	0	0
-3	0	0	2
-4	0	0	0
-4	0	0	0
-4	0	0	2
-5	0	0	1
-5	9	0.022835250545	0
-5	19	0.031371250545	1
-5	28	0.031511250545	0
-5	34	0.040047250545	1
-5	47	0.040368595185	3
-6	0	0	1
-6	14	0.022836584801	2
-6	27	0.031372584801	1
-6	33	0.031512584801	2
-6	42	0.040048584801	1
-6	48	0.040368595185	3
-7	0	0	1
-7	12	0.022835922865	3
-7	22	0.031371922865	1
-7	31	0.031511922865	3
-7	37	0.040047922865	1
-7	43	0.040367922865	0
-8	0	0	1
-8	11	0.022835784508	3
-8	20	0.031371784508	1
-8	30	0.031511784508	3
-8	35	0.040047784508	1
-8	45	0.040368524206	3
-9	0	0	1
-9	13	0.022836334628	2
-9	26	0.031372334628	1
-9	32	0.031512334628	2
-9	41	0.040048334628	1
-9	46	0.040368524206	3
-10	4	0.022315250545	1000
-10	15	0.026135524235	1000
-10	50	0.044962277646	1000
-11	6	0.022315250545	1008
-11	16	0.026135524235	1008
-11	51	0.044962277646	1008
-12	8	0.022315250545	1055
-12	18	0.026135524235	1055
-12	53	0.044962277646	1055
-13	8	0.022315250545	1
-13	8	0.022315250545	0
-13	18	0.026135524235	1
-13	19	0.031371250545	0
-13	53	0.044962277646	1
-14	8	0.022315250545	1055
-14	19	0.031371250545	1055
-15	8	0.022315250545	0
-15	19	0.031371250545	0.00523572631
-16	9	0.022835250545	1
-16	10	0.022835250545	2
-16	19	0.031371250545	1
-16	19	0.031371250545	0
-16	28	0.031511250545	1
-16	29	0.031511250545	2
-16	34	0.040047250545	1
-16	34	0.040047250545	0
-17	21	0.031371784508	1055
-17	36	0.040047784508	1055
-18	25	0.031371922865	1055
-18	40	0.040047922865	1055
-19	25	0.031371922865	1
-19	25	0.031371922865	0
-19	40	0.040047922865	1
-20	25	0.031371922865	1055
-21	25	0.031371922865	0
-22	43	0.040367922865	1
-22	44	0.040367922865	2
+vector 31 WirelessB.hostB.app[0] throughput:vector ETV
+attr source throughput(packetReceived)
+attr title "throughput, vector"
+attr unit bps
+0	8666 791 0 922 0 0.247137449217 35 0 3 82 212
+1	9457 457 0 867 0 0.229532770321 21 0 3 47 121
+2	9914 1222 0 937 0 0.247388121537 53 0 3 127 329
+3	11136 27 0 0 0 0 3 0 2 2 4
+4	11163 27 0 0 0 0 3 0 2 2 4
+5	11190 2399 0 942 0 0.247388793857 101 0 3 144 312
+6	13589 2399 0 943 0 0.247388793857 101 0 3 158 340
+7	15988 2398 0 937 0 0.247388121537 101 0 3 126 276
+8	18386 2381 0 938 0 0.247388722878 101 1 3 192 456
+9	20767 2377 0 939 0 0.247388722878 101 1 3 185 421
+10	23144 609 4 884 0.022315250545 0.237145845484 22 1000 1000 22000 22000000
+11	23753 609 6 885 0.022315250545 0.237145845484 22 1008 1008 22176 22353408
+12	24362 609 8 887 0.022315250545 0.237145845484 22 1055 1055 23210 24486550
+13	24971 965 8 944 0.022315250545 0.247388793857 39 0 7 132 580
+14	25936 473 8 944 0.022315250545 0.247388793857 17 1055 1055 17935 18921425
+15	26409 628 8 944 0.022315250545 0.247388793857 17 0 0.058413117104 0.594657926157 0.027801375705508
+16	27037 1592 10 922 0.022885250545 0.247137449217 64 0 2 64 96
+17	28629 692 22 924 0.031421784508 0.24713798318 25 1055 1055 26375 27825625
+18	29321 446 26 928 0.031421922865 0.247138121537 16 1055 1055 16880 17808400
+19	29767 646 26 928 0.031421922865 0.247138121537 26 0 6 57 205
+20	30413 2491 29 937 0.031431922865 0.247388121537 100 0 2 100 150
+21	32904 278 29 871 0.031431922865 0.229533442641 10 1055 1055 10550 11130250
+22	33182 357 29 871 0.031431922865 0.229533442641 10 1e-005 0.063211391712 0.245148263744 0.0097601709092425
+23	33539 250 56 853 0.040398524206 0.229282699342 9 1055 1055 9495 10017225
+24	33789 251 59 856 0.040398595185 0.229282770321 9 1055 1055 9495 10017225
+25	34040 251 62 859 0.040398595185 0.229282770321 9 1008 1008 9072 9144576
+26	34291 224 62 859 0.040398595185 0.229282770321 9 1 9 45 285
+27	34515 251 63 860 0.040398595185 0.229282770321 9 1000 1000 9000 9000000
+28	34766 340 63 860 0.040398595185 0.229282770321 9 0.01808334464 0.132599503943 0.700511682595 0.067651105415634
+29	35106 224 63 860 0.040398595185 0.229282770321 9 0 8 36 204
+30	35330 896 64 867 0.040408595185 0.229532770321 36 0 2 36 54
+31	36226 38 365 783 0.1 0.2 2 240000 320000 560000 160000000000
+vector 32 WirelessB.hostA.app[0] throughput:vector ETV
+attr source throughput(packetReceived)
+attr title "throughput, vector"
+attr unit bps
+31	36408 39 947 947 0.247596456152 0.247596456152 1 336159.48105262 336159.48105262 336159.48105262 113003196701.57
+32	36447 53 947 947 0.1 0.247596456152 3 0 0 0 0
 
