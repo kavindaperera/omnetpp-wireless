@@ -1,15 +1,15 @@
-file 6183 1630347860                                            
+file 1062064 1630493693                                         
 version 2
-run Wireless04-0-20210830-23:54:14-28940
+run Wireless04-0-20210901-16:24:47-29640
 attr configname Wireless04
-attr datetime 20210830-23:54:14
+attr datetime 20210901-16:24:47
 attr experiment Wireless04
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvarsf ""
 attr measurement ""
 attr network WirelessB
-attr processid 28940
+attr processid 29640
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -126,23 +126,138 @@ vector 18 WirelessB.hostA.wlan[0].mac sentDownPk:vector(packetBytes) ETV
 attr interpolationmode none
 attr source packetSentToLower
 attr title "packets sent to lower layer, vector(packetBytes)"
-0	5663 49 0 8 0 0.022315250545 4 0 3 5 13
-1	5712 27 0 0 0 0 3 0 2 2 4
-2	5739 27 0 0 0 0 3 0 2 2 4
-3	5766 27 0 0 0 0 3 0 2 2 4
-4	5793 27 0 0 0 0 3 0 2 2 4
-5	5820 31 0 8 0 0.022315250545 2 0 1 1 1
-6	5851 9 0 0 0 0 1 1 1 1 1
-7	5860 9 0 0 0 0 1 1 1 1 1
-8	5869 32 0 10 0 0.022315784508 2 1 3 4 10
-9	5901 9 0 0 0 0 1 1 1 1 1
-10	5910 26 4 4 0.022315250545 0.022315250545 1 1000 1000 1000 1000000
-11	5936 26 6 6 0.022315250545 0.022315250545 1 1008 1008 1008 1016064
-12	5962 26 8 8 0.022315250545 0.022315250545 1 1028 1028 1028 1056784
-13	5988 26 8 8 0.022315250545 0.022315250545 1 1028 1028 1028 1056784
-14	6014 46 8 8 0.022315250545 0.022315250545 2 0 1 1 1
-15	6060 26 8 8 0.022315250545 0.022315250545 1 1028 1028 1028 1056784
-16	6086 23 8 8 0.022315250545 0.022315250545 1 0 0 0 0
-17	6109 46 8 9 0.022315250545 0.022315250545 2 1 2 3 5
-18	6155 26 8 8 0.022315250545 0.022315250545 1 1051 1051 1051 1104601
+vector 19 WirelessB.hostR2.wlan[0].mac rcvdPkFromLl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromLower
+attr title "packets received from lower layer, vector(packetBytes)"
+vector 20 WirelessB.hostR2.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, vector(packetBytes)"
+vector 21 WirelessB.hostR1.wlan[0].mac rcvdPkFromLl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromLower
+attr title "packets received from lower layer, vector(packetBytes)"
+vector 22 WirelessB.hostR1.wlan[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 23 WirelessB.hostR1.wlan[0].mac rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, vector(packetBytes)"
+vector 24 WirelessB.hostR1.wlan[0].mac.queue packetPushed:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet pushed, vector(packetBytes)"
+vector 25 WirelessB.hostR1.wlan[0].mac.queue queueLength:vector ETV
+attr interpolationmode sample-hold
+attr source "count(packetPushed) - count(packetPopped) - count(packetRemoved) - count(packetDropped)"
+attr title "queue length, vector"
+vector 26 WirelessB.hostR1.wlan[0].mac.queue packetPopped:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "packet popped, vector(packetBytes)"
+vector 27 WirelessB.hostR1.wlan[0].mac.queue queueingTime:vector ETV
+attr interpolationmode none
+attr source queueingTime(packetPopped)
+attr title "queueing times, vector"
+attr unit s
+vector 28 WirelessB.hostR1.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "Radio transmission state, vector"
+vector 29 WirelessB.hostR1.wlan[0].mac sentDownPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToLower
+attr title "packets sent to lower layer, vector(packetBytes)"
+vector 30 WirelessB.hostR3.wlan[0].mac rcvdPkFromLl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromLower
+attr title "packets received from lower layer, vector(packetBytes)"
+vector 31 WirelessB.hostR3.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, vector(packetBytes)"
+vector 32 WirelessB.hostB.wlan[0].mac rcvdPkFromLl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromLower
+attr title "packets received from lower layer, vector(packetBytes)"
+vector 33 WirelessB.hostB.wlan[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed to higher layer, vector(packetBytes)"
+vector 34 WirelessB.hostB.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 35 WirelessB.hostB.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr source packetSentToUpper
+attr title "packets passed up, vector(count)"
+vector 36 WirelessB.hostB.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceived
+attr title "packets received, vector(packetBytes)"
+vector 37 WirelessB.hostB.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr source dataAge(packetReceived)
+attr title "end-to-end delay, vector"
+attr unit s
+vector 38 WirelessB.hostB.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number, vector"
+vector 39 WirelessB.hostB.app[0] throughput:vector ETV
+attr source throughput(packetReceived)
+attr title "throughput, vector"
+attr unit bps
+vector 40 WirelessB.hostA.wlan[0].mac rcvdPkFromLl:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetReceivedFromLower
+attr title "packets received from lower layer, vector(packetBytes)"
+vector 41 WirelessB.hostA.wlan[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, vector(packetBytes)"
+0	10260 48077 0 24820 0 11.433935793889 1880 0 3 4695 12207
+1	58337 27 0 0 0 0 3 0 2 2 4
+2	58364 26051 0 24829 0 11.433936466209 1020 0 3 2545 6617
+3	84415 27 0 0 0 0 3 0 2 2 4
+4	84442 27 0 0 0 0 3 0 2 2 4
+5	84469 59204 0 24820 0 11.433935793889 2314 0 3 2150 4046
+6	143673 26021 0 24799 0 11.389687386302 1017 1 3 2033 5081
+7	169694 70299 0 24829 0 11.433936466209 2748 0 3 4940 12032
+8	239993 55413 0 24823 0 11.433936327852 2166 1 3 4967 12605
+9	295406 25969 0 24795 0 11.389687315323 1017 1 3 2033 5081
+10	321375 27749 4 24816 0.022315250545 11.433839846395 939 1000 1000 939000 939000000
+11	349124 27749 6 24817 0.022315250545 11.433839846395 939 1008 1008 946512 954084096
+12	376873 27750 8 24819 0.022315250545 11.433839846395 939 1028 1028 965292 992320176
+13	404623 27750 8 24819 0.022315250545 11.433839846395 939 1028 1028 965292 992320176
+14	432373 49908 8 24820 0.022315250545 11.433935793889 1878 0 6 2107 4927
+15	482281 27792 8 24820 0.022315250545 11.433935793889 939 1028 1028 965292 992320176
+16	510073 33144 8 24820 0.022315250545 11.433935793889 939 0 0.050339110932 7.73712924136 0.15866586063006
+17	543217 99854 8 24821 0.022315250545 11.433935793889 3754 0 2 3755 5633
+18	643071 27792 8 24820 0.022315250545 11.433935793889 939 1051 1051 986889 1037220339
+19	670863 30103 22 24824 0.030819784508 11.433936327852 1017 1051 1051 1068867 1123379217
+20	700966 30103 22 24824 0.030819784508 11.433936327852 1017 1051 1051 1068867 1123379217
+21	731069 15061 25 24827 0.030819922865 11.433936466209 509 1051 1051 534959 562241909
+22	746130 15061 25 24827 0.030819922865 11.433936466209 509 1028 1028 523252 537903056
+23	761191 15061 27 24829 0.030819922865 11.433936466209 509 1028 1028 523252 537903056
+24	776252 15061 27 24829 0.030819922865 11.433936466209 509 1028 1028 523252 537903056
+25	791313 27068 27 24829 0.030819922865 11.433936466209 1018 0 1 509 509
+26	818381 15061 27 24829 0.030819922865 11.433936466209 509 1028 1028 523252 537903056
+27	833442 13534 27 24829 0.030819922865 11.433936466209 509 0 0 0 0
+28	846976 54082 27 24830 0.030819922865 11.433936466209 2034 0 2 2035 3053
+29	901058 15061 27 24829 0.030819922865 11.433936466209 509 1051 1051 534959 562241909
+30	916119 15012 53 24796 0.039324524206 11.389687315323 508 1051 1051 533908 561137308
+31	931131 15012 53 24796 0.039324524206 11.389687315323 508 1051 1051 533908 561137308
+32	946143 15038 58 24800 0.039324595185 11.389687386302 508 1051 1051 533908 561137308
+33	961181 15038 58 24800 0.039324595185 11.389687386302 508 1028 1028 522224 536846272
+34	976219 15038 60 24802 0.039324595185 11.389687386302 508 1008 1008 512064 516160512
+35	991257 14422 60 24802 0.039324595185 11.389687386302 508 1 508 129286 43827954
+36	1005679 15038 61 24803 0.039324595185 11.389687386302 508 1000 1000 508000 508000000
+37	1020717 19869 61 24803 0.039324595185 11.389687386302 508 0.01700934464 0.06437484138 12.451387808678 0.35672787194065
+38	1040586 14471 61 24803 0.039324595185 11.389687386302 508 0 935 238269 149162839
+39	1055057 2315 205 24673 0.1 11.3 113 240000 480000 40320000 15001600000000
+40	1057372 2345 1157 24698 0.534344366712 11.355003578081 79 1051 1051 83029 87263479
+41	1059717 2345 1157 24698 0.534344366712 11.355003578081 79 1051 1051 83029 87263479
 
